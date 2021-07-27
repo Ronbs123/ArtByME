@@ -4,6 +4,9 @@ const app = express()
 express.static('public')
 
 // TODO make a general calls for HTML and JS files instead of this
+// read about express.static
+// app.get('/*',express.static('/static/html/'))
+// app.get('/*',express.static('/scripts/'))
 
 app.get('/HomePage.html', function (req, res) {
     res.sendFile('/static/html/HomePage.html', {root: __dirname})
@@ -36,6 +39,6 @@ app.get('/Store.html', function (req, res) {
 app.get('/Store.js', (req, res) => {
     res.sendFile('/scripts/Store.js', {root: __dirname});
 });
-// app.use('/',express.static(path.join(__dirname + '/scripts/HomePage.js')))
+app.use('/',express.static(path.join(__dirname + '/scripts/HomePage.js')))
 
 module.exports = app
