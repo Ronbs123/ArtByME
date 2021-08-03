@@ -8,6 +8,7 @@ express.static('public')
 app.get('*.css', express.static('./static/style/'))
 app.get('*.html', express.static('./static/html/'))
 app.get('*.PNG', express.static('./static/'))
+app.get('*.JPG', express.static('./static/'))
 app.get('*.js', express.static(__dirname)) //does not work
 
 // regestration route
