@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
-
+@import url('https://fontawesome.com/css/solid.css');
 * {
     box-sizing: border-box;
 }
@@ -53,6 +53,37 @@ body {
 .menu a:hover {
     font-style: oblique;
     font-weight: bold;
+}
+
+/* Store products */
+.product-details {
+    z-index: 1;
+    top: 50px;
+    left: 50px;
+    overflow-x: hidden;
+    text-transform: uppercase;
+    line-height: 10px;
+    font-size: 10px;
+    letter-spacing: 4px;
+    padding: 10px;
+    /* text-align: center; */
+    /* color: black; */
+    text-decoration: none;
+    display: block;
+}
+.product-details a {
+    text-decoration: none;
+}
+
+
+.product-details a:hover {
+    font-style: oblique;
+    font-weight: bold;
+}
+
+.p-price {
+    line-height: 20px;
+    font-size: 10px;
 }
 
 /* Style the content */
@@ -156,6 +187,10 @@ img {
     opacity: 60%;
 }
 
+.product-details a{
+    text-decoration: none;
+}
+
 img:hover {
     opacity: 100%;
 }
@@ -210,12 +245,14 @@ img:hover {
     margin: 20px;
     cursor: pointer;
     position: relative;
+    opacity: 100%;
 }
 .product-img img{
     width:100%;
     height: 100%;
     object-fit: contain;
     object-position: center;
+    opacity: 100%;
 }
 .product-details{
     display: flex;
@@ -225,6 +262,7 @@ img:hover {
     padding: 10px 20px;
     border-top: 1px solid #f3f3f3;
 }
+
 .p-name{
     color: #727272;
 }
@@ -237,24 +275,26 @@ img:hover {
     box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
 }
 .add-cart{
+    text-decoration: none;
     position: absolute;
     right: -20px;
     top: 10px;
-    width:50px;
-    height: 50px;
+    width:30px;
+    height: 30px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #ffffff;
-    background-color: #0b9d8a;
+    background-color: dimgray;
     box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
     display: none;
     animation: fade 0.3s;
 
 }
+
 .add-cart:hover{
-    background-color: #f76b6a;
+    background-color: black;
     transition: all ease 0.2s;
 }
 .product-box:hover .add-cart{
@@ -266,4 +306,3 @@ img:hover {
     justify-content: center;
     align-items: center;
 }
-
