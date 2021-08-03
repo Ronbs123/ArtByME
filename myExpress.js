@@ -6,6 +6,7 @@ express.static('public')
 
 // Set Connection to the db
 const database = new Datastore('database.db')
+database.persistence.setAutocompactionInterval(5)
 database.loadDatabase()
 
 // TODO make a general calls for HTML and JS files instead of this
@@ -15,7 +16,8 @@ app.get('*.PNG', express.static('./static/'))
 app.get('*.JPG', express.static('./static/'))
 app.get('*.js', express.static(__dirname)) //does not work
 
-app.post('/register/:user/:pass', (req,res)=>{ // LogIn route
+app.post('/register/:user/:pass', (req,res)=>{ // Register route
+    console.log('Server started regesteration process')
     const argUserName = req.params.user
     const argPassword = req.params.pass
     database.find({"userName": argUserName}, function (err, matchedUsers){
@@ -37,6 +39,7 @@ app.post('/register/:user/:pass', (req,res)=>{ // LogIn route
 })
 
 app.post('/login/:user/:pass', (req,res)=>{ // LogIn route
+    console.log('Server started logIn process')
     const argUserName = req.params.user
     const argPassword = req.params.pass
     database.find({"userName": argUserName}, function (err, matchedUsers){
@@ -46,17 +49,24 @@ app.post('/login/:user/:pass', (req,res)=>{ // LogIn route
             if(matchedUsers[0].password !== argPassword){
                 res.status(200).send({result:'wrongPassword'})
             } else {
-                // addTimeToLogInActivity(matchedUsers[0])
-                // send cookies
+                addTimeToLogInActivity(matchedUsers[0])
+                // send cookie
                 res.status(200).send({result:'userFound'})
             }
         }
     })
 })
 
-// function addTimeToLogInActivity(matchedUser){
-//     database.update({"userName": matchedUser.userName},{ $push: { logInActivity: 3 } })
-// }
+function addTimeToLogInActivity(matchedUser){
+    let currentdate = new Date();
+    let datetime = currentdate.getDate() + "/"
+        + (currentdate.getMonth()+1)  + "/"
+        + currentdate.getFullYear() + " @ "
+        + currentdate.getHours() + ":"
+        + currentdate.getMinutes() + ":"
+        + currentdate.getSeconds();
+    database.update({"userName": matchedUser.userName},{ $push: { logInActivity: datetime } }, function (){})
+}
 
 app.get('/HomePage.js', (req, res) => {
     res.sendFile('/scripts/HomePage.js', {root: __dirname});
