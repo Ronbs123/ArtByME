@@ -13,13 +13,16 @@ window.addEventListener('load', ()=>{
             })
             const data = await response.json()
             if(response.ok){
-                if(data.result == true){ // if the user found
+                if(data.result == 'userFound'){ // if the user found
                     // security
                     location.replace('/Store.html')
                 } else {
-                    console.log(data.result)
-                    alert("User doesn't exists, please try again")
-                    location.replace('/Index.html')
+                    if(data.result == 'wrongPassword'){
+                        alert('wrong password, please try again')
+                    } else {
+                        alert("User doesn't exists, please try again")
+                        location.replace('/Index.html')
+                    }
                 }
             } else {
                 alert("error occured, refreshing page")
