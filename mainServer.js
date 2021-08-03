@@ -1,5 +1,4 @@
 const express = require('express')
-const db = require('db')
 const uuidModule = require('uuid') // for cookies !
 const port = process.env.PORT || 7707;
 const myExpress = require('./myExpress.js');
