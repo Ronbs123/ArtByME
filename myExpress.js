@@ -47,7 +47,7 @@ app.post('/login/:user/:pass', (req,res)=>{ // LogIn route
                 res.status(200).send({result:'wrongPassword'})
             } else {
                 // addTimeToLogInActivity(matchedUsers[0])
-                // send cookie
+                // send cookies
                 res.status(200).send({result:'userFound'})
             }
         }
@@ -55,14 +55,7 @@ app.post('/login/:user/:pass', (req,res)=>{ // LogIn route
 })
 
 // function addTimeToLogInActivity(matchedUser){
-//     const currentDateAndTime = new Date();
-//     const datetime = "Last Sync: " + currentDateAndTime.getDate() + "/"
-//         + (currentDateAndTime.getMonth()+1)  + "/"
-//         + currentDateAndTime.getFullYear() + " @ "
-//         + currentDateAndTime.getHours() + ":"
-//         + currentDateAndTime.getMinutes() + ":"
-//         + currentDateAndTime.getSeconds()
-//     database.update({"userName": matchedUser.userName},{ $set: { logInActivity: matchedUser.logInActivity.push(datetime) } })
+//     database.update({"userName": matchedUser.userName},{ $push: { logInActivity: 3 } })
 // }
 
 app.get('/HomePage.js', (req, res) => {
