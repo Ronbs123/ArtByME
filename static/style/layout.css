@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
-@import url('https://fontawesome.com/css/solid.css');
 * {
     box-sizing: border-box;
 }
 
 body {
-    padding: 10px;
+    /*padding: 10px;*/
     margin: 0;
     font-family: cabin, avenir, montserratregular,'Comfortaa', cursive;;
     letter-spacing: 4px;
@@ -53,6 +52,7 @@ body {
 .menu a:hover {
     font-style: oblique;
     font-weight: bold;
+    transition: all ease 0.3s;
 }
 
 /* Store products */
@@ -79,6 +79,7 @@ body {
 .product-details a:hover {
     font-style: oblique;
     font-weight: bold;
+    transition: all ease 0.3s;
 }
 
 .p-price {
@@ -116,6 +117,7 @@ body {
     color: #333;
     font-style: oblique;
     font-weight: bold;
+    transition: all ease 0.3s;
 }
 
 h1 {
@@ -193,6 +195,7 @@ img {
 
 img:hover {
     opacity: 100%;
+    transition: all ease 0.3s;
 }
 
 /* Store CSS */

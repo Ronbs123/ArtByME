@@ -3,27 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Test</title>
+    <title>Art by Me | Explore Minimal & Abstract Original Artworks</title>
     <link href="/fadeInLeft.css" rel="stylesheet" type="text/css">
     <link href="/layout.css" rel="stylesheet" type="text/css">
+
     <link href="/slideshow.css" rel="stylesheet" type="text/css">
     <script src="/scripts/HomePage.js"></script>
+
+    <!-- for the menus -->
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/c8e4d183c2.js"></script>
+    <meta content="IE-edge" http-equiv="X-UA-Compatible">
+    <link href="/main.css" rel="stylesheet" type="text/css">
+    <script src="/scripts/IncludeHTML.js"></script>
 </head>
 <body>
-    <!-- Navigation -->
-    <div class="menu">
-        <div class="in-left">
-            <div class="logo">ART BY ME.</div>
-            <a href="/HomePage.html">Home</a>
-            <a href="/AboutUs.html">About Us</a>
-            <a href="/Store.html">Shop Now</a>
-            <a href="/ShoppingCart.html">Shopping Cart</a>
-            <a href="/HomePage.html">Wishlist</a>
-            <a href="/HomePage.html">Checkout</a>
-            <a href="/Index.html">Login</a>
-            <a href ="/Register.html">Register</a>
-        </div>
-    </div>
+<!-- menus -->
+<div w3-include-html="menu.html"></div>
 
     <div class="content">
         <div class="in-down">
@@ -54,5 +49,7 @@
 
     </div>
 
+<!-- for loading the menus -->
+<script>includeHTML();</script>
 </body>
 </html>
