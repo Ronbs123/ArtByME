@@ -16,6 +16,10 @@ window.addEventListener('load', ()=>{
                 if(data.result == 'userFound'){ // if the user found
                     // security
                     location.replace('/Store.html')
+                    //document.getElementById('log').innerText = "Log out"
+                    // not working
+                    // sol:
+                    // https://stackoverflow.com/questions/32429487/how-to-keep-the-innerhtml-content-that-is-changed-with-the-js-onclick-function
                 } else {
                     if(data.result == 'wrongPassword'){
                         document.getElementsByClassName('error')[0].innerText = "Wrong password, please try again"
