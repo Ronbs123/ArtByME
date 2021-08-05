@@ -18,18 +18,18 @@ window.addEventListener('load', ()=>{
                     location.replace('/Store.html')
                 } else {
                     if(data.result == 'wrongPassword'){
-                        alert('wrong password, please try again')
+                        document.getElementsByClassName('error')[0].innerText = "Wrong password, please try again"
                     } else {
-                        alert("User doesn't exists, please try again")
-                        location.replace('/Index.html')
+                        document.getElementsByClassName('error')[0].innerText = "User doesn't exists, please try again"
+                        //location.replace('/Index.html')
                     }
                 }
             } else {
-                alert("error occured, refreshing page")
+                document.getElementsByClassName('error')[0].innerText = "An error occurred, refreshing page..."
                 location.replace('/Index.html')
             }
         } else {
-            alert("Please make sure that the username and the password's length is more than 2")
+            document.getElementsByClassName('error')[0].innerText = "Please make sure that the username and the password's length contains more than 2 characters"
         }
     })
 })

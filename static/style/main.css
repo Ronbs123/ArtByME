@@ -95,3 +95,9 @@ a{
     outline: none;
     border-radius: 7px;
 }
+
+.error {
+    line-height: normal;
+    color: darkred;
+    letter-spacing: 0px;
+}
