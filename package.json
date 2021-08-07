@@ -2,12 +2,13 @@
   "name": "ArtByME",
   "version": "1.0.0",
   "dependencies": {
-    "db": "^3.3.1",
     "express": "^4.17.1",
-    "mysql": "^2.18.1",
     "nedb": "^1.8.0"
   },
   "devDependencies": {
+    "cookie-parser": "^1.4.5",
+    "connect-nedb-session": "^3.0.0",
+    "express-session": "^1.17.2",
     "uuid": "^3.3.2"
   }
 }

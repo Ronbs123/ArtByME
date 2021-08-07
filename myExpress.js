@@ -2,12 +2,35 @@ const express = require('express')
 const path = require('path')
 const Datastore = require('nedb')
 const app = express()
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
 express.static('public')
 
-// Set Connection to the db
+// Use Cookies
+app.use(cookieParser())
+
 const database = new Datastore('database.db')
 database.persistence.setAutocompactionInterval(5)
 database.loadDatabase()
+console.log('connected to neDB')
+
+// Set Session
+app.use(session({
+    secret: 'key that will sign cookie',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        path: '/',
+        httpOnly: true,
+        maxAge : 1800000 // 30 min
+    }
+}))
+
+// test for cookies
+// app.get('/HomePage.html', validateCookie, (req, res)=>{
+//     console.log('whe')
+// })
+//test for cookies
 
 // TODO make a general calls for HTML and JS files instead of this
 app.get('*.css', express.static('./static/style/'))
@@ -17,7 +40,7 @@ app.get('*.JPG', express.static('./static/'))
 app.get('*.js', express.static(__dirname)) //does not work
 
 app.post('/register/:user/:pass', (req,res)=>{ // Register route
-    console.log('Server started regesteration process')
+    console.log('Server started registration process')
     const argUserName = req.params.user
     const argPassword = req.params.pass
     database.find({"userName": argUserName}, function (err, matchedUsers){
@@ -50,23 +73,14 @@ app.post('/login/:user/:pass', (req,res)=>{ // LogIn route
                 res.status(200).send({result:'wrongPassword'})
             } else {
                 addTimeToLogInActivity(matchedUsers[0])
-                // send cookie
-                res.status(200).send({result:'userFound'})
+                res.cookie('session_id', req.session.id, {}) // setting cookie with the session id
+                res.status( 200).send({result:'userFound'})
+                console.log('Logged In successfully')
+                console.log(req.sessionID.id + ' session id')
             }
         }
     })
 })
-
-function addTimeToLogInActivity(matchedUser){
-    let currentdate = new Date();
-    let datetime = currentdate.getDate() + "/"
-        + (currentdate.getMonth()+1)  + "/"
-        + currentdate.getFullYear() + " @ "
-        + currentdate.getHours() + ":"
-        + currentdate.getMinutes() + ":"
-        + currentdate.getSeconds();
-    database.update({"userName": matchedUser.userName},{ $push: { logInActivity: datetime } }, function (){})
-}
 
 app.get('/HomePage.js', (req, res) => {
     res.sendFile('/scripts/HomePage.js', {root: __dirname});
@@ -83,9 +97,37 @@ app.get('/ShoppingCart.js', (req, res) => {
 app.get('/Store.js', (req, res) => {
     res.sendFile('/scripts/Store.js', {root: __dirname});
 });
+
 app.get('/Register.js', (req, res) => {
     res.sendFile('/scripts/Store.js', {root: __dirname});
 });
+
+function addTimeToLogInActivity(matchedUser){
+    let currentdate = new Date();
+    let datetime = currentdate.getDate() + "/"
+        + (currentdate.getMonth()+1)  + "/"
+        + currentdate.getFullYear() + " @ "
+        + currentdate.getHours() + ":"
+        + currentdate.getMinutes() + ":"
+        + currentdate.getSeconds();
+    database.update({"userName": matchedUser.userName},{ $push: { logInActivity: datetime } }, function (){})
+}
+
+function validateCookie(req, res, next){
+    const { cookies } = req;
+    if('session_id' in cookies){
+        console.log('cookie_id exists')
+        console.log(cookies.session_id + ' cookie id')
+        console.log(req.session.id + ' session id')
+        if(cookies.session_id == req.sessionID.id){ // checking if the cookie id equals to the session id to be authorized
+            next()
+        } else {
+            res.status(403).send({ msg : 'Not Authenticated'})
+        }
+    } else {
+        res.status(403).send({ msg : 'Not Authenticated'})
+    }
+}
 
 app.use('/',express.static(path.join(__dirname + '/scripts/HomePage.js')))
 

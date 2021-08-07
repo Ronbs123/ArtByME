@@ -25,6 +25,8 @@ window.addEventListener('load', ()=>{ //post to a route that registers the user 
                 alert("error occured, refreshing page")
                 location.replace('/Register.html')
             }
+        } else {
+            alert("Please make sure that the username and the password's length is more than 2")
         }
     })
 })
