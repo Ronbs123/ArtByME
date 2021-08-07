@@ -15,14 +15,14 @@ window.addEventListener('load', ()=>{ //post to a route that registers the user 
             console.log(data)
             if(response.ok){
                 if(data.result == true){
-                    alert(`user: ${user} with pass: ${pass} have been created`)
-                    location.replace('/HomePage.html')
+                    document.getElementsByClassName('error')[0].innerText = (`User: ${user} with password: ${pass} has been created`)
+                    //location.replace('/HomePage.html')
                 } else {
-                    alert(`user: ${user} is already exists, please try another username`)
-                    location.replace('/Register.html')
+                    document.getElementsByClassName('error')[0].innerText = (`User: ${user} already exists, please try another username`)
+                    //location.replace('/Register.html')
                 }
             } else {
-                alert("error occured, refreshing page")
+                document.getElementsByClassName('error')[0].innerText = "An error occurred, refreshing page..."
                 location.replace('/Register.html')
             }
         } else {

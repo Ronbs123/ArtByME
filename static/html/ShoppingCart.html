@@ -10,24 +10,17 @@
     <link rel="stylesheet" type="text/css" href="/cart.css">
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="/layout.css" rel="stylesheet" type="text/css">
+
+    <!-- for the menus -->
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/c8e4d183c2.js"></script>
+    <meta content="IE-edge" http-equiv="X-UA-Compatible">
+    <link href="/main.css" rel="stylesheet" type="text/css">
+    <script src="/scripts/IncludeHTML.js"></script>
 </head>
 
 <body>
-
-<!-- Navigation -->
-<div class="menu">
-    <div class="in-left">
-        <div class="logo">ART BY ME.</div>
-        <a href="/HomePage.html">Home</a>
-        <a href="/AboutUs.html">About Us</a>
-        <a href="/Store.html">Shop Now</a>
-        <a href="/ShoppingCart.html">Shopping Cart</a>
-        <a href="/HomePage.html">Wishlist</a>
-        <a href="/HomePage.html">Checkout</a>
-        <a href="/Index.html">Login</a>
-        <a href ="/Register.html">Register</a>
-    </div>
-</div>
+<!-- menus -->
+<div w3-include-html="menu.html"></div>
 
 <div class="content">
     <div class="in-down">
@@ -40,8 +33,8 @@
                 <div class="product-info">
                     <h3 class="product-name">Mattise Artwork</h3>
                     <h4 class="product-price">20$</h4>
-                    <h4 class="product-offer">50%</h4>
-                    <p class="product-quantity">Qnt: <input value="1" name="">
+                    <!--<h4 class="product-offer">50%</h4> -->
+                    <p class="product-quantity">Qnt: <input value="2" class="qnt">
                     <p class="product-remove">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                         <span class="remove">Remove</span>
@@ -53,8 +46,8 @@
                 <div class="product-info">
                     <h3 class="product-name">Friends themed card</h3>
                     <h4 class="product-price">20$</h4>
-                    <h4 class="product-offer">40%</h4>
-                    <p class="product-quantity">Qnt: <input value="1" name="">
+                    <!-- <h4 class="product-offer">40%</h4> -->
+                    <p class="product-quantity">Qnt: <input value="1" class="qnt">
                     <p class="product-remove">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                         <span class="remove">Remove</span>
@@ -65,22 +58,26 @@
         <div class="cart-total">
             <p>
                 <span>Total Price</span>
-                <span>₹ 3,000</span>
+                <span id="total-price">60$</span>
             </p>
             <p>
                 <span>Number of Items</span>
-                <span>2</span>
+                <span id="num-of-items">3</span>
             </p>
+            <!--
             <p>
                 <span>You Save</span>
                 <span>₹ 1,000</span>
             </p>
+            -->
             <a href="#">Proceed to Checkout</a>
         </div>
     </div>
 </div>
 </div>
 </div>
+<!-- for loading the menus -->
+<script>includeHTML();</script>
 </body>
 </html>
 
